@@ -1,16 +1,23 @@
-import { useProduct } from "medusa-react"
-import './App.css'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Layout } from "./Layout/Layout";
+import { Frontpage } from "./pages/Frontpage";
+import { Checkoutpage } from "./pages/Checkoutpage";
+import { Loginpage } from "./pages/Loginpage";
+import { Productspage } from "./pages/Productspage";
 
-function App() {
-  const { product } = useProduct("prod_01HWAJDQQK3ZVQZM83FX74NCQB");
-
-  console.log(product);
-
+const App = () => {
   return (
-    <>
-    <h1>Medusa Products</h1>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Frontpage />} />
+          <Route path="Checkoutpage" element={<Checkoutpage />} />
+          <Route path="Loginpage" element={<Loginpage />} />
+          <Route path="Productspage" element={<Productspage />} />
+        </Route>
+      </Routes>
+    </Router>
   );
-}
+};
 
-export default App
+export default App;
